@@ -26,4 +26,13 @@ class Gradebook
       end
     end.flatten
   end
+
+  def all_grades
+    list = {}
+    courses.map do |course|
+      course.capture_grades
+      list[course.name.to_sym] = course.grades
+    end
+    list
+  end
 end
