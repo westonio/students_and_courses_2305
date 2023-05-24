@@ -1,12 +1,14 @@
 class Course
   attr_reader :name,
               :capacity,
-              :students
+              :students,
+              :grades
 
   def initialize(name, capacity)
     @name = name
     @capacity = capacity
     @students = []
+    @grades = []
   end
 
   def full?
@@ -18,6 +20,12 @@ class Course
       students << student 
     else
       "Sorry - Class is full!"
+    end
+  end
+
+  def capture_grades
+    students.map do |student|
+      grades << student.grade
     end
   end
 end

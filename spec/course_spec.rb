@@ -57,4 +57,18 @@ RSpec.describe Course do
     
     expect(@course.enroll(student3)).to eq("Sorry - Class is full!")
   end
+
+  it 'can show all grades for the class' do
+    student1 = Student.new({name: "Morgan", age: 21})
+    student2 = Student.new({name: "Jordan", age: 29})
+
+    @course.enroll(student1)
+    @course.enroll(student2)
+    student1.log_score(100)
+    student1.log_score(80)
+    student2.log_score(95)
+    
+    @course.capture_grades
+    expect(@course.grades).to eq([90.0, 95.0])
+  end
 end
