@@ -24,8 +24,8 @@ class Course
   end
 
   def capture_grades
-    students.map do |student|
-      grades << student.grade
+    students.each do |student|
+      grades << student.grade if !student.grade.nil?
     end
   end
 end
