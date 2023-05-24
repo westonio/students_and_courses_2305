@@ -93,4 +93,30 @@ RSpec.describe Gradebook do
       expected = {:Calculus => [98.0,67.0], :Physics => [74, 96,83]}
       expect(@gradebook.all_grades).to eq(expected)
   end
+
+  it 'can list students with grades within a range' do
+    @gradebook.add_course(@calculus)
+      morgan = Student.new({name: "Morgan", age: 21})
+      jordan = Student.new({name: "Jordan", age: 29})
+      @calculus.enroll(morgan)
+      @calculus.enroll(jordan)
+      morgan.log_score(98)
+      jordan.log_score(67)
+    @gradebook.add_course(@physics)
+      frank = Student.new({name: "Frank", age: 34})
+      heather = Student.new({name: "Heather", age: 25})
+      sharon = Student.new({name: "Sharon", age: 27})
+      @physics.enroll(frank)
+      @physics.enroll(heather)
+      @physics.enroll(sharon)
+      frank.log_score(74)
+      heather.log_score(96)
+      sharon.log_score(83)
+
+
+      expect(@gradebook.students_in_range(90,100)).to eq([morgan, heather])
+      expect(@gradebook.students_in_range(75,90)).to eq([sharon])
+      expect(@gradebook.students_in_range(65,75)).to eq([jordan,frank])
+      expect(@gradebook.students_in_range(70,100)).to eq([morgan,frank,heather,sharon])
+  end
 end
