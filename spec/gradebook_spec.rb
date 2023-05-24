@@ -93,10 +93,10 @@ RSpec.describe Gradebook do
         @sharon.log_score(83)
 
 
-        expect(@gradebook.students_in_range(90,100)).to eq([@morgan, @heather])
-        expect(@gradebook.students_in_range(75,90)).to eq([@sharon])
-        expect(@gradebook.students_in_range(65,75)).to eq([@jordan, @frank])
-        expect(@gradebook.students_in_range(70,100)).to eq([@morgan, @frank, @heather, @sharon])
+      expect(@gradebook.students_in_range(90,100)).to eq([@morgan, @heather])
+      expect(@gradebook.students_in_range(75,90)).to eq([@sharon])
+      expect(@gradebook.students_in_range(65,75)).to eq([@jordan, @frank])
+      expect(@gradebook.students_in_range(70,100)).to eq([@morgan, @frank, @heather, @sharon])
     end
   end
 end
